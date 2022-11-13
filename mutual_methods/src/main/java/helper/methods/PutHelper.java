@@ -23,7 +23,7 @@ public class PutHelper {
                 .then()
                 .extract()
                 .response();
-        StoreApiInfo.put(RequestInfo.RESPONSE.info, response);
+        StoreApiInfo.put(RequestInfo.RESPONSE.value, response);
         log.info("Put request sent to {}", url);
         return response;
     }
@@ -39,7 +39,7 @@ public class PutHelper {
                 .then()
                 .extract()
                 .response();
-        StoreApiInfo.put(RequestInfo.RESPONSE.info, response);
+        StoreApiInfo.put(RequestInfo.RESPONSE.value, response);
         log.info("Put request sent");
         return response;
     }

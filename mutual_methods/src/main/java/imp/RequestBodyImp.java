@@ -23,9 +23,16 @@ import java.util.Map;
 import java.util.Objects;
 
 public class RequestBodyImp extends RequestBodyHelper {
-
+    // TODO: 11/10/2022 helperlar bittikten sonra 7.sira
     private final Logger log = LogManager.getLogger(RequestBodyImp.class);
 
+    /**
+     * asagida request bodyu string olarak yollayan bir step yazmisiz
+     * @param fileName
+     * @throws RequestNotDefined
+     *
+     * asagida once resource istenen filename pathini buldu sonrada icini okudu!
+     */
     @Step({"Add payload as String from resource <file name>",
             "Add body as String from resource <file name>",
             "Dosyayadan String tipinde istek body'si ekle <dosya adı>"})
@@ -36,15 +43,23 @@ public class RequestBodyImp extends RequestBodyHelper {
         addBody(payLoad);
     }
 
+    /**
+     * * asagida request bodyu hic stringle ugrasmiyip file olarak yolluyoruz kendisi serailize yapiyor byte ocde a cevirip
+     * @param fileName
+     * @throws RequestNotDefined
+     */
     @Step({"Add payload as file from resource <file name>",
             "Add body as file from resource <file name>",
             "Dosya tipinde istek body'si ekle <dosya adı>"})
-    public void xaddBodyAsFile(String fileName) throws RequestNotDefined {
+    public void addBodyAsFile(String fileName) throws RequestNotDefined {
         String filePath = Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)).getPath();
 
         File file = new File(filePath);
         addBody(file);
     }
+/**
+ *  * * asagida request body i direk table halinde giriyoruz key value table olarak yani map olarak
+ */
 
     @Step({"Add payload as map <table>",
             "Add body as map <table>",
@@ -61,7 +76,9 @@ public class RequestBodyImp extends RequestBodyHelper {
     public void addBodyAsFile(Map<String,Object> body) throws RequestNotDefined {
         addBody(body);
     }
-
+    /**
+     * asagida request body i direk ScenarioDataStore dan cagiriyoruz onceden attiysak
+     */
     @Step({"Add payload from scenario store with <key>",
             "Add body from scenario store with <key>",
             "Senaryo kayıtlı verisinden istek body'si ekle, kayıt anahtarı <key>"})
@@ -83,6 +100,15 @@ public class RequestBodyImp extends RequestBodyHelper {
         addBody(SpecDataStore.get(key));
     }
 
+    /**
+     * asagidaki method saklanan bodyi alip okuyor mesela jsondaki name field ine git kopek ise kedi yap diyoruz
+     * sonrada bunu ayni key ve yeni body ile data store a ekliyor
+     * @param key
+     * @param selector
+     * @param key1
+     *
+     * update document en son dokumani istenen selector ve valuesina gore degistirir
+     */
     @Step({"Get body with <key> from store and update <selector> as <key1> from scenario data",
             "<key> anahtarı ile saklanan body'den, <selector> değerini al, kayıtlı <key1>'in değeri ile güncelle"})
     public void updateBodyFromScenarioData(String key, String selector, String key1) {
@@ -94,7 +120,24 @@ public class RequestBodyImp extends RequestBodyHelper {
         ScenarioDataStore.put(key, newBody);
         log.info("\"{}\" is update as \"{}\" from \"{}\" in scenario store", selector, newValue, key);
     }
+    @Step({"Get body <payloadName> and update <selector>=<value> in json then store it during the scenario with <key>"})
+    public void updateBodyFromScenarioData(String key, String selector, String newValue, String key1) {
+        DocumentHelper documentHelper = new DocumentHelper();
+        String body = String.valueOf(Utils.getFromStoreData(key));
+        if (!body.startsWith("<") || !body.startsWith("{")) {
+            var is = getClass().getClassLoader().getResourceAsStream("payloads/" + key);
+            body = new FileHelper().readFileAsString(String.valueOf(is));
+        }
+        newValue = String.valueOf(Utils.getFromStoreData(newValue));
+        newValue = newValue.equalsIgnoreCase("null") ? null : newValue;
+        Object newBody = documentHelper.updateDocument(body, selector, newValue);
+        ScenarioDataStore.put(key1, newBody);
+        log.info("\"{}\" is update as \"{}\" from \"{}\" in scenario store", selector, newValue, key);
+    }
 
+    /**
+ * asagidaki method ise elindeki jsonu alip degistiriyor istenen selector ve value da
+ */
     @Step({"Update <selector>=<value> json from stored scenario with key <key>"})
     public void updateBody(String selector, String newValue, String key) {
         DocumentHelper documentHelper = new DocumentHelper();
@@ -117,5 +160,11 @@ public class RequestBodyImp extends RequestBodyHelper {
         newValue = newValue.equalsIgnoreCase("null") ? null : newValue;
         Object newBody = documentHelper.updateDocument(body, selector, newValue);
         addBody(newBody);
+    }
+
+    @Step({"Add payload from store with key <key>",
+            "Senaryo kayıtlı verisinden istek body'si ekle, kayıt anahtarı <key>"})
+    public void addBodyFromStore(String key) throws RequestNotDefined {
+        addBody(Utils.getFromStoreData(key));
     }
 }

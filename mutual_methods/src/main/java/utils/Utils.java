@@ -34,7 +34,7 @@ public class Utils {
      * @param uglyJSONorXmlString String formata xml veya json.
      * @return Formatlanmış bir şekilde json veya xml li String tipinde döner.
      */
-    public String prettyPrint(String uglyJSONorXmlString) {
+    public String  prettyPrint(String uglyJSONorXmlString) {
         if (uglyJSONorXmlString != null) {
             try {
                 return jsonPrettyPrint(uglyJSONorXmlString);
@@ -104,6 +104,13 @@ public class Utils {
         return isNumber;
     }
 
+    /**
+     *
+     * @param table
+     * @return
+     * burda gauge den aldigimiz table i bize ilk row olarak getiriyor
+     * biz onu alip foreach ile mape ceviriyoruz! key value halinde
+     */
     public Map<String, Object> gaugeDataTableToMap(Table table) {
         List<TableRow> rows = table.getTableRows();
         var map = new HashMap<String, Object>();

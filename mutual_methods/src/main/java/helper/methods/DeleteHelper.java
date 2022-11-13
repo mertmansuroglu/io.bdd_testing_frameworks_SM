@@ -22,7 +22,7 @@ public class DeleteHelper{
                 .then()
                 .extract()
                 .response();
-        StoreApiInfo.put(RequestInfo.RESPONSE.info, response);
+        StoreApiInfo.put(RequestInfo.RESPONSE.value, response);
         log.info("Delete request sent to {}", url);
     }
 
@@ -34,7 +34,7 @@ public class DeleteHelper{
                 .then()
                 .extract()
                 .response();
-        StoreApiInfo.put(RequestInfo.RESPONSE.info, response);
+        StoreApiInfo.put(RequestInfo.RESPONSE.value, response);
         log.info("Delete request sent");
     }
 }

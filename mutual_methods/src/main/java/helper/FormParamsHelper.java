@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Map;
 
 public class FormParamsHelper {
-
+    // TODO: 11/6/2022 5. buradan baslanilacak anlatmaya
     private final Logger log = LogManager.getLogger(FormParamsHelper.class);
     private static final String LOG_INFO = "{} = {} added to request as form param";
 
@@ -15,6 +15,9 @@ public class FormParamsHelper {
      *
      * @param key   is param key as string.
      * @param value is param value as string.
+     *
+     *          sen eger get te query param kullaniyorsan o query param
+     *          ama sen onu postta kullaniyorsan yani x-ww-form-urlencoded da kullaniyorsan oda form parametresidir
      */
     protected void addFormParam(String key, String value) {
         ApiHelper.getInstance().getRequestSpecification().formParam(key, value);

@@ -16,13 +16,16 @@ public class PostHelper {
      *
      * @param url url to which the request will be sent
      * @return is request result as response
+     *
+     * Asagida ben istegi attim sonra extract diyip response halinde dondurdum
+     * sonra bu response u storeApiInfoya koydum sonra kullanirsam diye
      */
     protected Response postRequest(String url) {
         Response response = ApiHelper.getInstance().getRequestSpecification().post(url)
                 .then()
                 .extract()
                 .response();
-        StoreApiInfo.put(RequestInfo.RESPONSE.info, response);
+        StoreApiInfo.put(RequestInfo.RESPONSE.value, response);
         log.info("Post request sent to {}", url);
         return response;
     }
@@ -37,7 +40,7 @@ public class PostHelper {
                 .then()
                 .extract()
                 .response();
-        StoreApiInfo.put(RequestInfo.RESPONSE.info, response);
+        StoreApiInfo.put(RequestInfo.RESPONSE.value, response);
         log.info("Post request sent");
         return response;
     }

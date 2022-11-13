@@ -17,6 +17,14 @@ public class DbDataImp extends DbDataHelper {
     private final Logger log = LogManager.getLogger(DbDataImp.class);
     private static final String LOG_INFO = "Query result stored on scenario store key: {}, value: {}";
 
+    /**
+     * asagida databasehelperin stepleri yer alir
+     * @param columnName
+     * @param queryName
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
     @Step({"Get column <columnName> data from query <queryName> result and save in scenario store",
             "Query <queryName> sorgusu sonucundan <columnName> sütun verisini scenario deposunda sakla"})
     public void GetQueryResultAndSaveValueWithColumnName(String columnName, String queryName) throws SQLException, ClassNotFoundException, IOException {

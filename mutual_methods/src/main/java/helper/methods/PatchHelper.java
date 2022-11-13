@@ -22,7 +22,7 @@ public class PatchHelper {
                 .then()
                 .extract()
                 .response();
-        StoreApiInfo.put(RequestInfo.RESPONSE.info, response);
+        StoreApiInfo.put(RequestInfo.RESPONSE.value, response);
         log.info("Patch request sent to {}", url);
         return response;
     }
@@ -37,7 +37,7 @@ public class PatchHelper {
                 .then()
                 .extract()
                 .response();
-        StoreApiInfo.put(RequestInfo.RESPONSE.info, response);
+        StoreApiInfo.put(RequestInfo.RESPONSE.value, response);
         log.info("Patch request sent");
         return response;
     }

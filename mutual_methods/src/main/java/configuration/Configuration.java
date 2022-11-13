@@ -10,7 +10,11 @@ import java.util.Properties;
 import static enums.PropertiesType.*;
 
 public class Configuration {
-
+    // TODO: 11/6/2022 1.BURAYA ILK BASTA DEGIN
+    /**
+     * config dosyasi kisaca config prop icerisindeki datalari okuyor istersek bu config proptaki paramlari ezebiliriz
+     * -DdbClass="test" dersek bunu aldirabiliriz  yani config proiptan almaz boylece
+     */
     private static Configuration instance;
     Properties configProps;
     protected static final Logger log = LogManager.getLogger(Configuration.class);

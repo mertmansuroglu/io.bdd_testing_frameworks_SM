@@ -10,6 +10,19 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 
 public class AuthImp extends AuthHelper {
+    // TODO: 11/10/2022 helperlar bittikten sonra 1.sira
+
+    /**
+     * Buranin mantigi specten/feature dan verilen keywordleri
+     * yani username/pwd leri basic aut helperi yada bearer etc methodlari call edip
+     * authentication bilgisini requestspece ekliyor yani burda  requesti gondermiyoruz daha
+     * onu biz methods kisminda yapiyoruz get/post/put gibi
+     *
+     * @param user
+     * @param password
+     */
+
+
 
     @Step({"Basic auth with <username> and <password>",
             "Kullanıcı adı: <username>, Şifre <password> ile temel yetkilendirme yap"})
@@ -29,13 +42,20 @@ public class AuthImp extends AuthHelper {
         addBearerToken(token);
     }
 
+    /**
+     * eger istersek o tokeni daha once key ile ScenarioDataStore a attiysak ordan cekebiliriz
+     * @param key
+     */
     @Step({"Add Bearer token from scenario store <key>",
             "Senaryo store'dan Bearer token ekle <token>"})
     public void bearerAuthFromScenarioStore(String key)  {
         String token = String.valueOf(ScenarioDataStore.get(key));
         addBearerToken(token);
     }
-
+    /**
+     * eger istersek o tokeni daha once key ile SuiteDataStore a attiysak ordan cekebiliriz
+     *
+     */
     @Step({"Add Bearer token from suit store <key>",
             "Suit store'dan Bearer token ekle <token>"})
     public void bearerAuthFromSuitStore(String key) {
@@ -43,6 +63,10 @@ public class AuthImp extends AuthHelper {
         addBearerToken(token);
     }
 
+    /**
+     * biz SpecDataStore.get(key));  ister spec ister suit isterse scenario boyunca istedigimiz degeri tutup geri cagirabiliriz icinden
+     * @param key
+     */
     @Step({"Add Bearer token from spec store <key>",
             "Spec store'dan Bearer token ekle <token>"})
     public void bearerAuthFromSpecStore(String key)  {

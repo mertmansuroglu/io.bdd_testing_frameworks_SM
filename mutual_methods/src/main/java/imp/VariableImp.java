@@ -17,11 +17,22 @@ import utils.Utils;
 import java.util.Map;
 import java.util.Objects;
 
-public class VariableImp {
+public class  VariableImp {
 
     private final Logger log = LogManager.getLogger(VariableImp.class);
     private static final String LOG_INFO = "{}, {} variable stored";
 
+    /**
+     *
+     * @param key
+     * @param value
+     *
+     * Mesela ben slacke mesaj gonderecem ve channel id yi once tutmak istiyorum
+     * asagidaki gibi channelId keyi ile tutatim ve senaryo boyunca istedigim zaman o key ile cagiririm
+     *
+     * Store variable "channelId" = "QAteam" during scenario/spec
+     * eger specte tutacaksak en yukari aliriz global variable gibi
+     */
 
     @Step({"Store variable <key> = <value> during scenario", "Senaryo boyunca değişkeni sakla <key> = <value>"})
     public void storeVariableDuringScenario(String key, String value) {

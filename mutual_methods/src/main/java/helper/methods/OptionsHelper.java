@@ -21,7 +21,7 @@ public class OptionsHelper {
                 .then()
                 .extract()
                 .response();
-        StoreApiInfo.put(RequestInfo.RESPONSE.info, response);
+        StoreApiInfo.put(RequestInfo.RESPONSE.value, response);
         log.info("Options request sent to {}", url);
     }
 
@@ -33,7 +33,7 @@ public class OptionsHelper {
                 .then()
                 .extract()
                 .response();
-        StoreApiInfo.put(RequestInfo.RESPONSE.info, response);
+        StoreApiInfo.put(RequestInfo.RESPONSE.value, response);
         log.info("Options request sent");
     }
 }

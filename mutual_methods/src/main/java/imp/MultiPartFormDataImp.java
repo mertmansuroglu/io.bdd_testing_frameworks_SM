@@ -16,6 +16,10 @@ public class MultiPartFormDataImp extends MultiPartFormDataParametersHelper {
 
     private final Logger log = LogManager.getLogger(MultiPartFormDataImp.class);
 
+    /**
+     * dosya falan eklemek icin pdf vs stepler asagida mevcut
+     * @param filePath
+     */
     @Step({"Get \"<fileName>\" file and add to request as multi-part form data",
             "File \"<fileName>\" dosyayı recourcedan getir ve multi-part form data olarak ekle"})
     public void addMultiPartFormDataToRequest(String filePath) {

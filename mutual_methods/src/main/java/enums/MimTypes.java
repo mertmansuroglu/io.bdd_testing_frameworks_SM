@@ -28,6 +28,10 @@ public enum MimTypes {
     XLSX("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"),
     XML("text/xml");
 
+    /**
+     * enumin icine ulasmamamiz lazim disardan cunku biz
+     * sadece istedigimiz value yi verecez kendi icini getirecek
+     */
     private final String mimType;
 
     MimTypes(String value) {

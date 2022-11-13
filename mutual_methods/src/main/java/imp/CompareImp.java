@@ -14,13 +14,25 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CompareImp  {
+    // TODO: 11/10/2022 helperlar bittikten sonra 2.sira
 
+    /**
+     * asagidaki metodlar tamamne response aldiktan sonra compare etmek icin kullanilir
+     */
     private static final String ARE_N0T_EQUALS = "They aren't equals";
     private static final String EQUALS = "They are equals";
     private static final String CONTAINS = "%s isn't contains %s as String";
 
     private final Logger log = LogManager.getLogger(CompareImp.class);
 
+    /**
+     *
+     * @param selector
+     * @param value
+     * @throws NullResponse
+     * @throws NullValue
+     * burdaki olayimiz en son responsu check etmektir
+     */
     @Step({"Get <selector> from response and then compare with <value>, Are they not equals?",
             "Get value with <selector> from response and verify it isn't equal with <value>",
             "Yanıttan <selector> ile değer alın ve <value> ile eşit olmadığını doğrulayın"})
@@ -45,6 +57,13 @@ public class CompareImp  {
         assertEquals(value, value2, EQUALS);
     }
 
+    /**
+     * asagidaki methodda istenen value yi direk tum responsta iceriliyormu diye arar
+     * @param selector
+     * @param value
+     * @throws NullResponse
+     * @throws NullValue
+     */
     @Step("Get <selector> from response and then compare with <value>, is it contains the value?")
     public void dataCompareContainsFromResponse(String selector, String value) throws NullResponse, NullValue {
         ResponseBodyHelper responseBodyHelper = new ResponseBodyHelper();

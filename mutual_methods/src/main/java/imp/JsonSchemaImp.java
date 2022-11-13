@@ -19,7 +19,11 @@ public class JsonSchemaImp extends JsonSchemaHelper {
     private static final String VALIDATE_2 = "response json validate with {} schema";
 
 
-
+    /**
+     * asagida json schema validation stepleri yer alir
+     * @param schemaName
+     * @throws NullResponse
+     */
     @Step({"Validate response json with schema <Schema Name>",
             "Validate response json with schema <Schema Name> which is in from class path",
             "Responsu resource da tanımlanan şema <schema name> ile dorğulayın"})

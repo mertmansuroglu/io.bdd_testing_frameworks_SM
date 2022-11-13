@@ -16,15 +16,22 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class JsonSchemaHelper extends ResponseBodyHelper {
+    // TODO: 11/6/2022 18. buradan baslanilacak anlatmaya
+
 
     private final Logger log = LogManager.getLogger(JsonSchemaHelper.class);
 
     /**
+     *
+     *
      * This method validate response and schema as string,
      * you should give all response string and schema string
      *
      * @param json       response json
      * @param jsonSchema schema json
+     *
+     *    matchesJsonSchema(jsonSchema) -> we put the json schema here and it is checking our json in terms of complying with the provided schema
+     *    Here, We check if json response is coming with the right json schema
      */
     protected void jsonSchemaValidatior(String json, String jsonSchema) {
         assertThat(json, matchesJsonSchema(jsonSchema));
@@ -45,7 +52,7 @@ public class JsonSchemaHelper extends ResponseBodyHelper {
     protected void jsonSchemaValidatiorWithSetting(String jsonSchema, SchemaVersion schemaVersion) throws NullResponse {
         checkIfResponseNull();
         try {
-            Response response = (Response) StoreApiInfo.get(RequestInfo.RESPONSE.info);
+            Response response = (Response) StoreApiInfo.get(RequestInfo.RESPONSE.value);
             JsonSchemaFactory jsonSchemaFactory = JsonSchemaFactory.newBuilder()
                     .setValidationConfiguration(ValidationConfiguration
                             .newBuilder()
@@ -74,7 +81,7 @@ public class JsonSchemaHelper extends ResponseBodyHelper {
     protected void jsonSchemaValidatior(String jsonSchemaName) throws NullResponse {
         checkIfResponseNull();
         try {
-            Response response = (Response) StoreApiInfo.get(RequestInfo.RESPONSE.info);
+            Response response = (Response) StoreApiInfo.get(RequestInfo.RESPONSE.value);
             response.then().assertThat().body(matchesJsonSchemaInClasspath(jsonSchemaName));
         } catch (Exception e) {
             log.warn("An error occurred message:{}", e.getMessage());

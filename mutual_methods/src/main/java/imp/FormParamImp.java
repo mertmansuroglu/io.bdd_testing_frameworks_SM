@@ -9,7 +9,12 @@ import utils.Utils;
 import java.util.Map;
 
 public class FormParamImp extends FormParamsHelper {
+    // TODO: 11/10/2022 helperlar bittikten sonra 5.sira
 
+
+    /**
+     * Asagidada ayni sekilde formparam helper methodlarini implement edip steplere dokuyoruz
+     */
 
     @Step({"Add form parameter <key> = <value>", "Form parametresi ekle <key> = <value>"})
     public void addFormParamToReq(String key, String value) {

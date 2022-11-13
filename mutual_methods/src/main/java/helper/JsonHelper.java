@@ -19,7 +19,7 @@ import static com.jayway.jsonpath.JsonPath.using;
 
 
 public class JsonHelper {
-
+    // TODO: 11/6/2022 7. buradan baslanilacak anlatmaya
     private final Logger log = LogManager.getLogger(JsonHelper.class);
 
 
@@ -28,6 +28,8 @@ public class JsonHelper {
      *
      * @param json is string json.
      * @return return is json string as DocumentContext
+     * string jsonu DocumentContext e ceviriyor cunku string uzerinden islem yapamiyoruz keylerinden bulacaz jsonu
+     * ayni xmlhelperdaki gibi java objesi haline getiriyoruz ama json ozellikli sekilde cviriyor sonra gidip biz icinden erisim sagliyoruz objeyi kullanarak
      */
     protected DocumentContext getJsonDocumentContext(String json) {
         Configuration configuration = Configuration.builder()
@@ -45,6 +47,16 @@ public class JsonHelper {
      * @param jsonKey  is specified pattern json key.
      * @param newValue is new value tu update
      * @return is the json string after update.
+     *
+     * asagida getJsonDocumentContext(json) ile gittik string jsonu verdik ve bize json objesi donuldu
+     * jsonkey= tags[0].name gibi dusunebiliriz newvalue=mert gibi dusunebiliriz
+     * xmlde tum veriler string ama jsonda farkli farkli tipler oluyor string,integer,boolean gibi olabilir zaten pojo bir anlamda bunun icin yaziliyor
+     *
+     * simdi biz jsonu ve guncellemek sitenen jsonkeyi aldik ama objeye atadik cunku ne tip donecek bilmiyorum ama bunu  o.getClass().getSimpleName() ile ogrenirim string integer mi
+     *
+     * sonra value type ina gore switch casede ben parse islemi yapiyorum integersa inte boolean ise boolean a ceviriyorum
+     * eger o value null degilse direk yeni degeri atiyorum  context.set(jsonKey, integerValue);  nullsa o degeri yaistiramam hata gelir jsondan
+     * enson guncellenmis valuelari iceren bir json elde etmis oluyoruz elimizde  return context.jsonString( );
      */
     protected String updateJsonValue(String json, String jsonKey, String newValue) {
         DocumentContext context = getJsonDocumentContext(json);

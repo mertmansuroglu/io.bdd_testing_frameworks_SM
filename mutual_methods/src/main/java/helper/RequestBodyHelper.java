@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.util.Map;
 
 public class RequestBodyHelper {
-
+    // TODO: 11/6/2022 10. buradan baslanilacak anlatmaya
     private final Logger log = LogManager.getLogger(RequestBodyHelper.class);
     private static final String LOG_INFO = "Body added to request \n Body detail: {}";
 
@@ -20,6 +20,13 @@ public class RequestBodyHelper {
      *
      * @param body is request body as object
      * @throws RequestNotDefined if request is null, the exception will throw
+     *
+     * diyelim post/put/path methoduna body ekleyecez o islem yapilir getRequestSpecification().body(body);
+     * sonra ekledigim bodyide console a loglarim  prettyprint seklinde
+     *
+     *burdaki serializatino kismini rest assured yapiyor tek yaptigimiz biz dependency veriyoruz jackson/gson gibi kendisi yapiyor
+     * ben object/file/Stringi atiyorum kendisi direk serialize ediyor  convert java object to byte stream/json object!!!
+     * getRequestSpecification().body(body);
      */
     protected void addBody(Object body) throws RequestNotDefined {
         Utils utils = new Utils();

@@ -8,7 +8,7 @@ import java.math.BigInteger;
 public class ParseHelper {
     public final Logger log = LogManager.getLogger(ParseHelper.class);
 
-
+    // TODO: 11/6/2022 17. buradan baslanilacak anlatmaya
     /**
      * it parses string to integer if the string parsable to integer.
      * it loges the error if the string is not parsable to integer and returns null.

@@ -11,13 +11,16 @@ public class FilterHelper {
 
     private final Logger log = LogManager.getLogger(FilterHelper.class);
 
-
+    /**
+     * biz RestAssuredFilteri kendi yarattigimiz yani 2 sekilde ekleyebiliriz
+     */
     protected void addCustomLogFilter(Integer... statusCode) {
         ApiHelper.getInstance().getRequestSpecification().filter(new RestAssuredFilter(statusCode));
         log.info("Status added to log filter {}", Arrays.stream(statusCode)
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ")));
     }
+
 
     protected void addFilter(RestAssuredFilter filter) {
         ApiHelper.getInstance().getRequestSpecification().filter(filter);

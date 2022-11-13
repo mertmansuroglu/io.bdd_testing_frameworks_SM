@@ -43,7 +43,7 @@ This framework is an open-source tool to combine API test-automation, UI test-au
     - [Storing key value from the json response as variable](#responseStep10)
     - [Storing key value table from the json response as variable](#responseStep11)
     - [Getting the specified selector value from response then compare it with provided value if they equals or not](#responseStep12)
-    - [Getting the specified selector value from response then in terms of containing compare it with the provided value ](#responseStep13)
+    - [Getting the specified selector value from response then in terms of containing compare it with the provided value](#responseStep13)
 
 
 

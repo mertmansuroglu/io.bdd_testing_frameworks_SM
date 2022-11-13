@@ -8,6 +8,11 @@ import org.apache.logging.log4j.Logger;
 public class SleepHelper {
     private final Logger log = LogManager.getLogger(SleepHelper.class);
 
+    /**
+     * sleep icin stepler
+     * @param second
+     * @throws InterruptedException
+     */
     @Step({"Sleep for <second> second",
             "Testi <second> saniyeliğine durdur"})
 

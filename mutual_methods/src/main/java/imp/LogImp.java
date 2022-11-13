@@ -19,9 +19,22 @@ import java.util.stream.Collectors;
 
 public class LogImp extends FilterHelper {
 
+    // TODO: 11/10/2022 helperlar bittikten sonra 6.sira
 
     private final Logger log = LogManager.getLogger(LogImp.class);
 
+    /**
+     * Biz iki sekilde rest assured filter kullanabiliyoruz
+     * @param table
+     * ilki spece asagidaki gibi yazariz
+     * * Add log filter with errorStatus
+     *     |Status |
+     *     |500    |
+     *     |400    |
+     *     |405    |
+     *     eger request 500 400 405 olarak donerse error diger turlu info olarak loglayacak
+     *     biz asagidaki filteri bi concept haline getirip gelecek tum status codlari ekletiriz error log diye
+     */
     @Step({"Add log filter with errorStatus <table>", "Bu statü kodları için log filtresi ekle <table>"})
     public void addFilter(Table table) {
         ParseHelper parseHelper = new ParseHelper();
@@ -41,11 +54,18 @@ public class LogImp extends FilterHelper {
         addCustomLogFilter(status);
     }
 
+
+    /**
+     * asagidaki startLog metodunda biz disardan istedigimiz sekilde log yazabiliyoruz
+     * @param log
+     */
     @Step({"Log <log>", "Logla <log>"})
     public void startLog(String log) {
         this.log.info(log);
     }
-
+    /**
+     * asagidaki startLog metodunda biz disardan istedigimiz sekilde logu scenario storedan get ile alabiliriz
+     */
     @Step({"Log this param <key>", "Kayıtlı parametreyi logla <key>"})
     public void logThisParam(String key) {
         this.log.info(ScenarioDataStore.get(key));

@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import static enums.MimTypes.*;
 
 public class FileHelper {
-
+    // TODO: 11/6/2022 4. buradan baslanilacak anlatmaya
     private final Logger log = LogManager.getLogger(FileHelper.class);
 
     /**
@@ -32,12 +32,30 @@ public class FileHelper {
         }
     }
 
-
+    /**
+     * asagidaki tamamen yardimci methoddur
+     *
+     * biz mesela pdf veya dosya  eklersek istege bizden otomatik olarak mimtype ini ister ornek asagidakiler gibi
+     *     PDF("application/pdf")
+     *     asagida hangi dosya eklenirse onun uzantisi alinir sonra mim type ini bulur
+     * @param file
+     * @return
+     * bu  getFileMimeType methoduda asagidaki gibi kullanilir file i verriz kendisi isi halleder
+     *
+     *  protected void addMultiPartFormData(String key, File file) {
+     *         String mimeType = new FileHelper().getFileMimeType(file);
+     *         ApiHelper.getInstance().getRequestSpecification().multiPart(
+     *                 new MultiPartSpecBuilder(file)
+     *                         .fileName(file.getName())
+     *                         .controlName(key)
+     *                         .mimeType(mimeType)
+     *                         .build()
+     *         );
+     */
     protected String getFileMimeType(File file) {
         String type = file.getName().split("[.]")[1].toLowerCase();
 
         switch ( MimTypes.valueOf(type) ) {
-
             case XLS:
                 return XLS.getText();
             case JS:
@@ -92,4 +110,5 @@ public class FileHelper {
                 return null;
         }
     }
+    // TODO: 11/6/2022 biz buraya json okuma/excel/csv okumada ekleyebiliriz
 }

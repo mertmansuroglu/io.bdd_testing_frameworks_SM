@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ResponseBodyImp extends ResponseBodyHelper {
-
+    // TODO: 11/10/2022 helperlar bittikten sonra 9.sira
     private final Logger log = LogManager.getLogger(ResponseBodyImp.class);
 
     @Step({"Store response as string with <key> during scenario",
@@ -27,6 +27,14 @@ public class ResponseBodyImp extends ResponseBodyHelper {
         log.info("response stored with key \"{}\" during scenario", key);
     }
 
+    /**
+     * asagida ise response u json seklinde alip stringe  cevirmisiz sonrada json object olarak tuttuk
+     * yani yapilan sey deserialization oluyor response jsonu alip json objecte/java object ceviriyoruz  gson getAsJsonObject() ile
+     * en sonda bu json objecti key ile datastore a ekliyoruz
+     * @param key
+     * @throws NullResponse
+     * kullanim yeri mesela access token aldik responsetan bunu alip sonra kullanacam
+     */
     @Step({"Store response as json with <key> during scenario",
             "Response'u json olarak <key> anahtarı ile senaryo boyunca sakla."})
     public void storeResponseForScenarioAsJson(String key) throws NullResponse {
@@ -63,6 +71,13 @@ public class ResponseBodyImp extends ResponseBodyHelper {
         log.info("response stored with key \"{}\" during spec", key);
     }
 
+    /**
+     * asagida ise responsetan bir selector value su alip key ile senaryo boyunca sakliyor
+     * @param selector
+     * @param key
+     * @throws NullResponse
+     * @throws NullValue
+     */
     @Step({"Get <selector> from response and store it with <key> during scenario",
             "Respons'dan <selector> değerini getir ve <key> anahtarı ile senaryo boyunca sakla"})
     public void getResponseElementValueForScenario(String selector, String key) throws NullResponse, NullValue {
@@ -87,6 +102,13 @@ public class ResponseBodyImp extends ResponseBodyHelper {
         log.info("\"{}\" is stored with {} during spec", selector, key);
     }
 
+    /**
+     * asagidaki responstaki selector valuesinin null olup olmadigini kontrol eder
+     * @param selector
+     * @throws NullResponse
+     * @throws NullValue
+     * "" yollandiginda null gitmiyor empty gidiyor ondan kendim kontrol etmek zorundayim
+     */
     @Step({"Get <selector> from response and then check if is not null?",
             "Get <selector> from the response and then verify it is not null?",
             "Selector <selector> ile responsdand eğer getir ve null olmadığını doğrula"})

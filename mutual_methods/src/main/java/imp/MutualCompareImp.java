@@ -16,6 +16,11 @@ public class MutualCompareImp {
     private static final String EQUALS = "They are equals";
     private static final String CONTAINS = "%s isn't contains %s as String";
 
+    /**
+     * asagida direk valuelari compare ederiz!!
+     * @param key1
+     * @param key2
+     */
     @Step({"Get <key1> and <key> from scenario store and then compare, Are they equals?",
             "Key <key1> ve <key2>'i senaryo deposundan getir ve eşit olduklarını doğrula",
             "Get <key1> and <key2> from the scenario store and verify they are equal"})

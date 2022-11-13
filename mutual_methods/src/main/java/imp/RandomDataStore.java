@@ -17,7 +17,10 @@ public class RandomDataStore extends RandomHelper {
     private final static String SPECIFY_DIGIT_NUMBER = "The {} digit number created, number is {}";
     private final static String BETWEEN_NUMBER = "The digit number created between {} and {}, number is {}";
 
-
+    /**
+     * asagida random methodlarini step ettik
+     * @param key
+     */
     @Step("Generate new phone number and store as <key> during scenario")
     public void generatePhoneNumberScenario(String key) {
         ScenarioDataStore.put(key, generateGsmNumber());

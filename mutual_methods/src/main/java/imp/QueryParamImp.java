@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class QueryParamImp extends QueryParamsHelper {
 
-
+    // TODO: 11/10/2022 helperlar bittikten sonra 4.sira
     @Step({"Add query parameter <key> = <value>.", "Query parametresi ekle <key> = <value>."})
     public void addQueryParamsToReq(String key, String value) throws RequestNotDefined {
         addQueryParam(key, value);
@@ -22,6 +22,9 @@ public class QueryParamImp extends QueryParamsHelper {
         addQueryParam(key, value);
     }
 
+    /**
+     *asagidada headers taki gibi istersek table halinde ekleyebiliriz query paramlarini birden fazla ise
+     */
     @Step({"Add query parameter <table>", "Query parametresi ekle <table>"})
     public void addQueryParamsToReq(Table table) throws RequestNotDefined {
         Utils utils = new Utils();

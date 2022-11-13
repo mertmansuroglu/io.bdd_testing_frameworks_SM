@@ -16,6 +16,8 @@ public class GetHelper {
      *
      * @param url url to which the request will be sent
      * @return is request result as response
+     *
+     * biz response bize dondukten sonra tum bilgileri storeapiInfo ya atariz
      */
     protected Response getRequest(String url){
         Response response = ApiHelper.getInstance().getRequestSpecification()
@@ -23,7 +25,7 @@ public class GetHelper {
                 .then()
                 .extract()
                 .response();
-        StoreApiInfo.put(RequestInfo.RESPONSE.info, response);
+        StoreApiInfo.put(RequestInfo.RESPONSE.value, response);
         log.info("Get request sent to {}", url);
         return response;
     }
@@ -38,7 +40,7 @@ public class GetHelper {
                 .then()
                 .extract()
                 .response();
-        StoreApiInfo.put(RequestInfo.RESPONSE.info, response);
+        StoreApiInfo.put(RequestInfo.RESPONSE.value, response);
         log.info("Get request sent");
         return response;
     }

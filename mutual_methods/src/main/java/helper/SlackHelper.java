@@ -29,7 +29,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SlackHelper {
-
+    /**
+     * istersek donen responsetan slacke mesaj attirabilirsin orayi update ettirebilirsin!!!
+     template su sekilde olacak istersek degistirebiliriz
+     Test Start: date
+     Test End: date
+     Test execution time in seconds: seconds
+     20 executed 10 passed 10 failed
+     */
+    // TODO: 11/6/2022 12. buradan baslanilacak anlatmaya
     private static Integer passCount = 0;
     private static Integer failCount = 0;
     private static Integer executed = 0;
@@ -47,6 +55,15 @@ public class SlackHelper {
         setStartDate();
     }
 
+    /**
+     * once yapila config.prop a gidip slack_message nedir true/false
+     * sonra iki sekilde slack mesaji yollayabiliyoruz
+     * 1.eger slack message true ve Webhook ile 2.slack message true  ve slack token ile hangisini koyarsan o sekilde kullaniyor
+     * bunlarida zaten properties filedan okuyoruz
+     *
+     * islem olarak once slack_message webhook/slacktoken varsa alacak channelId yi ben verecem
+     * hem webhook hem slacktoken varsa web hook u alir
+     */
     public void sendSlackMessage() {
         String webHook = Configuration.getInstance().webhook();
         String slackToken = Configuration.getInstance().getSlackToken();

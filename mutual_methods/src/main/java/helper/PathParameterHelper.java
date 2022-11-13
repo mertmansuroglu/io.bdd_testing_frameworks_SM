@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Map;
 
 public class PathParameterHelper {
-
+    // TODO: 11/6/2022 8. buradan baslanilacak anlatmaya
     private final Logger log = LogManager.getLogger(PathParameterHelper.class);
     private static final String LOG_INFO = "{} = {} added to request as path param";
 
@@ -15,6 +15,8 @@ public class PathParameterHelper {
      *
      * @param key   is param key as string.
      * @param value is param value as string.
+     *
+     *              simdi ben parametreyi koydugumda endpointin kendi bir parcasi gibi eklerse bu path parameter
      */
     protected void addPathParam(String key, String value) {
         ApiHelper.getInstance().getRequestSpecification().pathParam(key, value);

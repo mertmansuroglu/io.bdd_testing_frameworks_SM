@@ -10,7 +10,12 @@ import static enums.MailType.HOTMAIL;
 
 public class RandomHelper {
 
+    // TODO: 11/6/2022 15. buradan baslanilacak anlatmaya
 
+    /**
+     * asagidaki methodlar gerek duydugumuz ihtiyacigmiz olan random fonksyonlardir
+     * mail yaratma numara yaratma vs gibi
+     */
     protected String generateMail() {
         return generateMail(generateNumberBetweenTwoBound(4, 10));
     }

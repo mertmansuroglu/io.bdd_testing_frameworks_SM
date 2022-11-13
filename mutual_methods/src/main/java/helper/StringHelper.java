@@ -8,6 +8,8 @@ import java.util.regex.PatternSyntaxException;
 
 public class StringHelper {
     private static final Logger log = LogManager.getLogger(StringHelper.class);
+    // TODO: 11/6/2022 16. buradan baslanilacak anlatmaya
+
 
     /**
      * @param originalText Original text to be replaced
@@ -15,6 +17,8 @@ public class StringHelper {
      * @param replacement  New part of text to replace
      * @param onlyFirst    Will all equal part of the text be change?
      * @return The new text after replacement
+     *
+     * asagidaki yapilan  eger ihtiyac varsa string fonksyonlari icerir replace regex substring gibi
      */
     protected String replace(String originalText, String oldPart, String replacement, boolean... onlyFirst) {
         if (oldPart.length() == 1) {

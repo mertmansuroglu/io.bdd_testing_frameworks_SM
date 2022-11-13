@@ -15,6 +15,14 @@ public class StringImp extends StringHelper {
     private static final String SPEC_INFO = "\"{}\" is stored on Spec store";
     private static final String SUIT_INFO = "\"{}\" is stored on Suit store";
 
+    /**
+     * * asagidaki yapilan  eger ihtiyac varsa string fonksyonlari icerir replace regex substring gibi
+     * stepler yazildi
+     * @param regex
+     * @param replacement
+     * @param text
+     * @param key
+     */
     @Step({"Replace <old> old chars to new <new> chars on <text> text and store it on Scenario store with <> key"})
     public void replaceAndStoreScenarioData(String regex, String replacement, String text, String key) {
         text = String.valueOf(Utils.getFromStoreData(text));

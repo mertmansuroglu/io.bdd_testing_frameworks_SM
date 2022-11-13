@@ -10,7 +10,9 @@ import org.apache.logging.log4j.Logger;
 public class RequestImp {
 
     private final Logger log = LogManager.getLogger(RequestImp.class);
-
+/**
+ * here, we are creating our steo for defining new request by initiating init method
+ */
     @Step({"Define new request", "Yeni bir api isteği tanımla"})
     @Given("Define new request")
     public void defineNewApiRequest() {

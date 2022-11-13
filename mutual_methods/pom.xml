@@ -2,6 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--   biz external olarak bizim projeyi baska rpojelere ekliyip jar file olarak kullanabilecez-->
+
     <parent>
         <artifactId>io.bdd_testing_frameworks</artifactId>
         <groupId>testing_frameworks</groupId>
@@ -21,6 +23,7 @@
             <artifactId>json-path</artifactId>
             <version>${jayway.version}</version>
         </dependency>
+        <!--ama sen scope compile dersen mainde kullanabilirsin bu dependencyo       -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>

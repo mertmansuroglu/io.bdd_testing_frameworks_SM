@@ -10,8 +10,11 @@ import utils.Utils;
 import java.util.Map;
 
 public class PathParamImp extends PathParameterHelper {
-
-
+    /**
+     * asagida direk path parametre ekleme stepleri yer alir
+     * @param key
+     * @param value
+     */
     @Step({"Add path parameter <key> = <value>.", "Path parametresi ekle <key> = <value>."})
     public void addPathParamsToReq(String key, String value)  {
         value = String.valueOf(Utils.getFromStoreData(value));

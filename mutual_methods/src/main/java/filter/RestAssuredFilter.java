@@ -24,7 +24,16 @@ public class RestAssuredFilter implements Filter {
     Integer[] failedStatusCode;
     private static final String LINE = "-------------------------------";
 
-
+    /**
+     * burasi tamamen rest assured in filter class i biz bu filteri alip override ediyoruz.
+     * bu sayede rest assured in tum infolarina(request/response) ulasabiliyoruz.Biz normalde tum infolari cekemiyoruz
+     * eger request basariliysa tum request/response bilgilerini info olarak ama basarissizsa error olarak logladik
+     * biz disardan status codlari gondeririz mesela 400 500 falan bunlar gelirse error logla
+     * bu yaptigimizi yapmazsak baska hic bir sekilde log4j ye yazamiyoruz
+     * ayrica rest assured in kendi loguda sadece console a yaziyor o sebeple file a yazdiramayiz
+     *
+     * @param failedStatusCode
+     */
     public RestAssuredFilter(Integer... failedStatusCode) {
         this.failedStatusCode = failedStatusCode;
     }
@@ -33,10 +42,15 @@ public class RestAssuredFilter implements Filter {
      * Bu method da Rest-Assured filter method'unu override ediyoruz ve Rest-Assured
      * Logları'nı log4j2 ile log dosyamıza yazıyoruz.
      *
+     * neden ihtiyac duyuyoruz? cunku rest assured loglari sadece console loglaridir ama sen bu lgolari file a koymak istersen filter kullanman lazim
+     *
      * @param reqSpec       Rest-Assured request detayları.
      * @param resSpec       Rest-Assured response detayları.
      * @param filterContext Rest- Assured filter context.
      * @return Rest-Assured response
+     *
+     * Yukarida once status code ile benim disardan verdigim status code karsilasitirili varsa error olarak loglanir diger ife giderse
+     * yani fail status kod hic yollanmadiysa ben herseyi info olarak loglayacam
      */
     @Override
     public Response filter(FilterableRequestSpecification reqSpec,
@@ -55,13 +69,14 @@ public class RestAssuredFilter implements Filter {
         return response;
     }
 
-    private String getFileAsString(File file) {
-        try {
-            return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            return "null";
-        }
-    }
+
+    /**
+     * burda ise bodye bakiyorum eger filesa getFileAsString(reqSpec.getBody()); bu metodu cagiririm yoksa direk bodyi getir
+     * @param reqSpec
+     * @return
+     * java.io.File= body type i
+     *
+     */
 
     private String getRequestBody(FilterableRequestSpecification reqSpec) {
 
@@ -80,6 +95,17 @@ public class RestAssuredFilter implements Filter {
         }
 
         return String.valueOf(reqBody);
+    }
+
+    /**
+     *     Response a file olarak bodyi eklediysek onceden bodyi bize file olarak getiriyor bu sebeple patliyor bu file i stringe ceviriyorum
+     */
+    private String getFileAsString(File file) {
+        try {
+            return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            return "null";
+        }
     }
 
     private void logErrorStatus(Response response, FilterableRequestSpecification reqSpec) {
@@ -188,6 +214,14 @@ public class RestAssuredFilter implements Filter {
         log.info(utils.prettyPrint(response.getBody().asString()));
     }
 
+    /**
+     * ben rest assured a disardan file verebiliyorum map verebiliyorum ama ben bunlari loglarken string olarak loglamak zorundayim
+     * yada multipartspec ise liste olarak geldigi icin onuda liste icerisinden dongu kurup cekip ekliyoruz loga
+     * map ise for each koyduk key ve valuelarini ayri ayri logluyoruz
+     *
+     * @param reqSpec
+     * @param isInfo
+     */
     private void logMapMultiPartSpecification(List<MultiPartSpecification> reqSpec, boolean isInfo) {
         for (Object params : reqSpec) {
             if (isInfo)

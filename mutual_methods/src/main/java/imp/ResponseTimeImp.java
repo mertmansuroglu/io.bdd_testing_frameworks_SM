@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ResponseTimeImp extends ResponseTimeHelper {
     private final Logger log = LogManager.getLogger(ResponseTimeImp.class);
-
+    // TODO: 11/10/2022 helperlar bittikten sonra 8.sira
     @Step({"Get response time as milliseconds and compare it, is it less then <milliseconds>?",
             "Response zamanını getir ve karşılaştır, <milli saniye> milisaniyeden düşük mü?'"})
     public void checkResponseTimeAsMillis(Integer milliSeconds) throws NullResponse {

@@ -6,7 +6,10 @@ import helper.methods.PostHelper;
 import io.cucumber.java.en.When;
 
 public class PostRequestImp extends PostHelper {
-
+    /**
+     * gonderecegimiz post http requesti icin stepler
+     * @throws RequestNotDefined
+     */
     @Step({"Post request", "Post isteği gönder"})
     public void postRequests() throws RequestNotDefined {
         postRequest();

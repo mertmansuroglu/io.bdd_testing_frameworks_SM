@@ -7,7 +7,9 @@ import org.apache.logging.log4j.Logger;
 import java.net.URI;
 
 public class ProxyHelper {
-
+    /**
+     * bazen istekleri eklersen api a proxy gerebilir onu gondermek icin gerekli
+     */
     private final Logger log = LogManager.getLogger(ProxyHelper.class);
     private static final String LOG_INFO = "{} added as proxy";
 

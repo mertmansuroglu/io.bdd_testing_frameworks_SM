@@ -6,6 +6,10 @@ import io.cucumber.java.en.Given;
 
 public class UrlImp extends RequestUrlHelper {
 
+
+    /**
+     *Asagida requestimize base url veya base path yani endpointimizi ekleyen step yazdik
+     */
     @Step({"Add base url <url>", "Url ekle <url>"})
     public void addBaseUrlToReq(String url) {
         addBaseUrl(url);

@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Map;
 
 public class QueryParamsHelper {
-
+    // TODO: 11/6/2022 9. buradan baslanilacak anlatmaya
     private final Logger log = LogManager.getLogger(QueryParamsHelper.class);
     private static final String LOG_INFO = "{} = {} added to request as query param";
     /**
@@ -14,6 +14,9 @@ public class QueryParamsHelper {
      *
      * @param key   is param key as string.
      * @param value is param value as string.
+     *
+     *              asagidada query param eklemek icin methodlar yazili form parametredeki gibi
+     *              query parami koyuyorum ve storepi infoya koymama gerek yok cunku zaten requestspec static!!!
      */
     protected void addQueryParam(String key, String value) {
         ApiHelper.getInstance().getRequestSpecification().queryParam(key, value);

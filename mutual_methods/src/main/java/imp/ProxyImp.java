@@ -14,6 +14,11 @@ public class ProxyImp extends ProxyHelper {
 
     private final Logger log = LogManager.getLogger(ProxyImp.class);
 
+    /**
+     * eger proxy isteniyorsa onun icin eklemen gereken stepler
+     * @param key
+     * @throws RequestNotDefined
+     */
     @Step({"Add proxy to request with <int key>", "Proxy ekle, <int key>"})
     public void addProxy(int key) throws RequestNotDefined {
         proxy(key);

@@ -5,7 +5,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class RequestUrlHelper {
+    // TODO: 11/6/2022 14. buradan baslanilacak anlatmaya
 
+    /**
+     *Asagida requestimize base url veya base path yani endpointimizi ekleriz!
+     * sonrada bunu ulr impte cagiririz
+     */
     private final Logger log = LogManager.getLogger(RequestUrlHelper.class);
 
     protected void addBaseUrl(String baseUrl) {

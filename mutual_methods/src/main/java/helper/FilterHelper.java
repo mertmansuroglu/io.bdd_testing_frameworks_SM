@@ -13,6 +13,11 @@ public class FilterHelper {
 
     /**
      * biz RestAssuredFilteri kendi yarattigimiz yani 2 sekilde ekleyebiliriz
+     *
+     * onceden biz defineNewRequestIfNull() metodu koyuyorduk
+     * sonrada RequestSpecification request diyip sonra request.filter diyorduk
+     * ama rest assured in given i zaten static ondan dolayi buna gerek yok7
+     * direk get instancedan requesti alip filter cagiririz ApiHelper.getInstance().getRequestSpecification().filter(filter)
      */
     protected void addCustomLogFilter(Integer... statusCode) {
         ApiHelper.getInstance().getRequestSpecification().filter(new RestAssuredFilter(statusCode));

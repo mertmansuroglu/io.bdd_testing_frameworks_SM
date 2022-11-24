@@ -20,6 +20,11 @@ public class ResponseBodyImp extends ResponseBodyHelper {
     // TODO: 11/10/2022 helperlar bittikten sonra 9.sira
     private final Logger log = LogManager.getLogger(ResponseBodyImp.class);
 
+    /**
+     * aldigimiz response u senaryo boyunca string olarak key ile sakliyoruz
+     * @param key
+     * @throws NullResponse
+     */
     @Step({"Store response as string with <key> during scenario",
             "Response'u String olarak <key> anahtarı ile senaryo boyunca sakla."})
     public void storeResponseForScenario(String key) throws NullResponse {
@@ -77,6 +82,9 @@ public class ResponseBodyImp extends ResponseBodyHelper {
      * @param key
      * @throws NullResponse
      * @throws NullValue
+     *
+     * asagida ben response umu cektim buraya kadar object geldi onuda sonra kullanilmasi iicin datastore a koydum
+     * sonra gidip ben mutualCompareimp de obje olarak kiyaslayabilirim
      */
     @Step({"Get <selector> from response and store it with <key> during scenario",
             "Respons'dan <selector> değerini getir ve <key> anahtarı ile senaryo boyunca sakla"})

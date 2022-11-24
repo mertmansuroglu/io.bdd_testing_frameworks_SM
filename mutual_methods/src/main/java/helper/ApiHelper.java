@@ -14,6 +14,8 @@ public class ApiHelper {
      * biz asagida api helper class ini singleton haline getirdik cunku
      * biz sadece bir tane api helper instanci yaratip bu instance ile RequestSpecification i tum proje boyunca kullanabiliyoruz
      * bu sayede surekli inherit etmek zorunda kalmiyoruz baska class tan olayimiz singleton
+     *
+     * eger requestim yeni bir request degilse getinstance cagiririm yeni request ise definenewrequest kullanilir
      */
     private final Logger log = LogManager.getLogger(ApiHelper.class);
     private static ApiHelper instance;
@@ -43,6 +45,7 @@ public class ApiHelper {
      * buranin amaci requesti olusturup storeApiInfoda saklamak
      *
      * definenewrequestifull bu methoda gerek yok cunku doluysa onu kullanaracak zaten yoksada en basta olusturacak
+     * asagidaki rest assured given metodu static oldugundan surekli requesti put etmeye gerek kalmayacak guncel request elimizde olacak
      */
     public void init() {
         StoreApiInfo.put(RequestInfo.REQUEST.value, RestAssured.given());
@@ -58,6 +61,9 @@ public class ApiHelper {
      *
      *     yukardaki method rest assure in methodu ben buraya gelip reqeust specification aliyorum burdan cunku keyword driven oldugundan sonra kullanicinin
      *     eklemesini istiyorum header/methods vs belli degil
+     *
+     *     bir senaryoda iki farkli istek atmak istedigimizde birden fazla asagidaki metodu kullanabiliriz
+     *     ve yeni istekte onceki request tamamen sifirlanir Rest assured.given yeni clear bir request olusturur
      */
     public void defineNewRequest() {
         init();

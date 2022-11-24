@@ -20,6 +20,9 @@ public class MutualCompareImp {
      * asagida direk valuelari compare ederiz!!
      * @param key1
      * @param key2
+     * simdi biz responsebody helperda responsu obje olarak aldiksonra bunu datastore a eklemistik
+     * ekledigimiz response objesini alip storeDatadan sonrada utilsten parse same type metoduna ki valueyida atip ayni tipte olmasini sagliyoruz
+     * en sonda assertion islemini gerceklestiriyorz
      */
     @Step({"Get <key1> and <key> from scenario store and then compare, Are they equals?",
             "Key <key1> ve <key2>'i senaryo deposundan getir ve eşit olduklarını doğrula",

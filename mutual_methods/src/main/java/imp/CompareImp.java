@@ -16,14 +16,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CompareImp  {
     // TODO: 11/10/2022 helperlar bittikten sonra 2.sira
 
-    /**
-     * asagidaki metodlar tamamne response aldiktan sonra compare etmek icin kullanilir
-     */
+/**
+ * bir seyi birden fazla kez yapiyorsak en yukarda global tanimla ve o sekilde cagir
+ */
     private static final String ARE_N0T_EQUALS = "They aren't equals";
     private static final String EQUALS = "They are equals";
     private static final String CONTAINS = "%s isn't contains %s as String";
 
     private final Logger log = LogManager.getLogger(CompareImp.class);
+    /**
+     * asagidaki metodlar tamamne response aldiktan sonra compare etmek icin kullanilir
+     */
 
     /**
      *

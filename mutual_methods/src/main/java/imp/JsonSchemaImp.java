@@ -21,14 +21,15 @@ public class JsonSchemaImp extends JsonSchemaHelper {
 
     /**
      * asagida json schema validation stepleri yer alir
+     * burda biz kendi onceden yarattigimiz ve gelmesini bekledigimiz jsonschema file inin yolunu verriz schemas/petSchema.json gibi oda giidp response u validate eder
      * @param schemaName
      * @throws NullResponse
+     *
      */
     @Step({"Validate response json with schema <Schema Name>",
             "Validate response json with schema <Schema Name> which is in from class path",
             "Responsu resource da tanımlanan şema <schema name> ile dorğulayın"})
     public void validateJsonSchema(String schemaName) throws NullResponse {
-        schemaName = String.valueOf(Utils.getFromStoreData(schemaName));
         try {
             jsonSchemaValidatior(schemaName);
             log.info("response validate with {} json schema", schemaName);

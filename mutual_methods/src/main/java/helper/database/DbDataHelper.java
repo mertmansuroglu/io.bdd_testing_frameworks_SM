@@ -27,7 +27,7 @@ public class DbDataHelper {
      * @throws SQLException
      * @throws ClassNotFoundException
      *
-     * Class.forName(dbClass); hangi db ye baglanacagini soyluyor bunuda configden aliyor (mssql-oracle-postqre-mysql) ?
+     * Class.forName(dbClass); hangi db ye baglanacagini soyluyo1r bunuda configden aliyor (mssql-oracle-postqre-mysql) ?
      */
     protected HashMap<String, Object> getQueResult(String queryName) throws SQLException, ClassNotFoundException {
         String dbClass = Configuration.getInstance().getDbClass();

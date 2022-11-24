@@ -27,8 +27,8 @@ public class DocumentHelper {
     }
 
     /**
-     *     update document en son bodyi istenen selector ve new valuesina gore degistirir
-     *      json veya xml olarak ayirt edip ona gore degistirir
+     *     update document en son bodyi istenen selector ve new valuesina gore degistirir sonrada yollamak mistersek yollariz
+     *     json veya xml olarak ayirt edip ona gore degistirir ikiside degilse undefined type der!
      *
      *
      * @param body

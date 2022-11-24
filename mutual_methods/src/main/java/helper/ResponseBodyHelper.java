@@ -98,6 +98,12 @@ public class  ResponseBodyHelper {
      * @throws NullResponse if response is null, it will be throw this exception.
      *
      * yada istersem response icin hic path vermiyip direk istedigim selectoru yazip valuesini alabilirim getResponseAsJsonPath() metodu kullanip
+     *
+     * asagidaki method sayesinde biz pojo classlara gerek duymaduk getResponseAsJsonPath().get(selector)  yazip obje olarak biz responsu aliriz
+     * ve ne oldugu nu biliyorsam bu objenin ben ona kendimk cevirebilirim
+     * ne tipinde oldugunu bilemiyorsamda getsmiple name ini alip convert eden class imiz var o is goruyor
+     *
+     *
      */
     protected Object getJsonPathValue(String selector) throws NullResponse {
         try {

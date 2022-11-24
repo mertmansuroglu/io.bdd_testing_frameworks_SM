@@ -12,10 +12,15 @@ import static enums.PropertiesType.*;
 public class Configuration {
     // TODO: 11/6/2022 1.BURAYA ILK BASTA DEGIN
     /**
-     * config dosyasi kisaca config prop icerisindeki datalari okuyor istersek bu config proptaki paramlari ezebiliriz
-     * -DdbClass="test" dersek bunu aldirabiliriz  yani config proiptan almaz boylece
+     * config dosyasi kisaca proje ayaga kalktiginda ilk olarak config prop icerisindeki datalari okuyor istersek bu config proptaki paramlari ezebiliriz
+     * -DdbClass="test" dersek bunu aldirabiliriz  yani config proptan almaz boylece onu ezer verdigimizde.   mvn -Denv=dev diyebiliriz yani run ederken
+     * System.getProperty("env") dedigimde -Denv=dev    dev getirecek cunku ben disardan dev verdim. Ama configProps = new Properties() dersem disardan verilen hersey siifirlanir
+     * cunku yeniden initalize etmis oldum properties i new dedigim icin
+     *
+     *
      */
     private static Configuration instance;
+    private final Properties systemProp;
     Properties configProps;
     protected static final Logger log = LogManager.getLogger(Configuration.class);
     static final String PROP_FILE_NAME = "config.properties";
@@ -39,8 +44,12 @@ public class Configuration {
         }
     }
 
+    /**
+     * ClassLoader.getSystemResourceAsStream  --> java en basta ayaga kaldiriyor bizde onu cagirdigimizda en basta bunu kullanabiliyoruz
+     * once disardan verilmis propertyleri configProps ta tutuyorum
+     */
     private Configuration() {
-
+      systemProp= System.getProperties()
         try (InputStream is = ClassLoader.getSystemResourceAsStream(PROP_FILE_NAME)) {
             configProps = new Properties();
             configProps.load(is);
@@ -81,10 +90,20 @@ public class Configuration {
         return webhook;
     }
 
+    /**
+     * burda da o property nin string value sini aliyorum veya integer value sini aliyorum
+     * @param propKey
+     * @return
+     */
     public String getStringValueOfProp(String propKey) {
         return configProps.getProperty(propKey);
     }
 
+    /**
+     * eger istenen property null degilse integerea ceviriyorum
+     * @param propKey
+     * @return
+     */
     public Integer getIntegerValueOfProp(String propKey) {
         var portString = configProps.getProperty(propKey);
         return portString != null ? Integer.parseInt(portString) : null;

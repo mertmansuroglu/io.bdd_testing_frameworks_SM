@@ -22,6 +22,7 @@ public class StringImp extends StringHelper {
      * @param replacement
      * @param text
      * @param key
+     * regex ten anlatmak istedigi sen oraya istersen regexte verebilirsin
      */
     @Step({"Replace <old> old chars to new <new> chars on <text> text and store it on Scenario store with <> key"})
     public void replaceAndStoreScenarioData(String regex, String replacement, String text, String key) {

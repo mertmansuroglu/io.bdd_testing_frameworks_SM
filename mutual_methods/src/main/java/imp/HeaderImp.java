@@ -37,6 +37,11 @@ public class HeaderImp extends HeaderHelper {
         addHeaders(headers);
     }
 
+    /**
+     * Cucumberda direk map olarak alabiliyorsun table i ama bunun icin cucumberin ayri bir sinifi var ordan
+     * ayarliyorsun data tableconfig diye bir class onu override metod yazdiginda parametre olarak aldirabiliyoruz
+     * @param map
+     */
     public void addFormParametersFromTable(Map<String, Object> map) {
         addHeaders(map);
     }

@@ -108,8 +108,11 @@ public class Utils {
      *
      * @param table
      * @return
-     * burda gauge den aldigimiz table i bize ilk row olarak getiriyor
+     * burda gauge den aldigimiz table kendi data formatinda i bize ilk row olarak getiriyor
      * biz onu alip foreach ile mape ceviriyoruz! key value halinde
+     *
+     * hangi durumda ihtiyac duyulur? Form parametreyi diyelim rest assured a ekleyecem ve rest assured map olarak alabilir
+     * o sebeple bu table i mape ceviriyorum. Bunu yapmazsa tum header/paramleri teker teker yazmak zorunda kaliriz
      */
     public Map<String, Object> gaugeDataTableToMap(Table table) {
         List<TableRow> rows = table.getTableRows();
@@ -135,6 +138,15 @@ public class Utils {
         return map.values().toArray(new String[0]);
     }
 
+    /**
+     * asagidaki method yardimi ile iki gelen obje variablelarini ayni tipe donusturuyor source objemizin tipine
+     * bu sayede biz responsetan istedigimiz objeyi jsonPath ile cekebiliyoruz. Obje olarak geliyor gelen objeyide istedigimiz tipe donusturebiliyoruz
+     * yani response u ben rest assureddan alabiliyorum response icerisinden herhangi birseyi json path ile alabiliyorum. cektigim sey integersa integer stringse string geliyor
+     * ben zaten pojo yaziyorsam bubnlarin ne olacagini biliyorum e cekincede biliyorum neden pojoya ihtiyac oluyor
+     * @param sourceObject
+     * @param targetObject
+     * @return
+     */
     public Object parsSameType(Object sourceObject, Object targetObject) {
         String className = sourceObject.getClass().getSimpleName();
         ParseHelper parseHelper = new ParseHelper();
@@ -175,6 +187,19 @@ public class Utils {
         }
     }
 
+    /**
+     * 3 tane store mantigi var gauge in
+     * biz ilk basta bir key verildiginde hepsi icin kontol ettiriyorduk ama bu yavas oluyordu
+     * ondan dolayoi bir data alacagimizda getFromStoreData diyoruz once bakiyor scenarioya yoksa suite yoksa spec
+     * oda yoksa keyi atar
+     *  String body = String.valueOf(Utils.getFromStoreData(key));
+     *  implementationda storeApi info yok helperda var impde biz gauge in kendi storedata larini kullaniyoruz
+     *  
+     *  
+     * @param key
+     * @return
+     */
+    // TODO: 11/22/2022  11/13/2022 get li olan implerimizi artik tek stepe indirebiliriz  scenario/spec/suit yerine getFromStoreData diyecez
     public static Object getFromStoreData(String key) {
         if (ScenarioDataStore.get(key) != null)
             return ScenarioDataStore.get(key);

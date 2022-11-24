@@ -19,6 +19,12 @@ public class StringHelper {
      * @return The new text after replacement
      *
      * asagidaki yapilan  eger ihtiyac varsa string fonksyonlari icerir replace regex substring gibi
+     * ihtiyacin oldugunda stringde yollayabilirsin regexde yollayabilirsin bizim steptekiol;d bazen string bazen regex alabilir
+     * eger oldpartta  length 1 ise buyuk olasilik char gelis onu alip chara parse ediyoruz
+     * asagisindaki sadece ilk buldugunu degistieceksen replaceFirst kullanacaksin
+     * asagisindaki yollanan karakter regex mi ona bakiyor eger regexse replace all ile degistiriyor cunku regex ile yollanan tum karakterleri degistirir
+     * regex degilse normal degistirmek istenen string ile degistiriliyor.
+     *
      */
     protected String replace(String originalText, String oldPart, String replacement, boolean... onlyFirst) {
         if (oldPart.length() == 1) {

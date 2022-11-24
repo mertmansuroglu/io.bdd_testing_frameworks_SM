@@ -32,6 +32,7 @@ public class JsonSchemaHelper extends ResponseBodyHelper {
      *
      *    matchesJsonSchema(jsonSchema) -> we put the json schema here and it is checking our json in terms of complying with the provided schema
      *    Here, We check if json response is coming with the right json schema
+     *    diyelim 2000 satir response um var onlarin required alanlarini kontrol ediyorsun integarsa integer stringse string gibi
      */
     protected void jsonSchemaValidatior(String json, String jsonSchema) {
         assertThat(json, matchesJsonSchema(jsonSchema));

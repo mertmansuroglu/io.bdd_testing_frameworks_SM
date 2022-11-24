@@ -34,6 +34,8 @@ public class LogImp extends FilterHelper {
      *     |405    |
      *     eger request 500 400 405 olarak donerse error diger turlu info olarak loglayacak
      *     biz asagidaki filteri bi concept haline getirip gelecek tum status codlari ekletiriz error log diye
+     *    istegi atmadan once rest assured asagidaki log filterlari bilir ve ona gore doner
+     *
      */
     @Step({"Add log filter with errorStatus <table>", "Bu statü kodları için log filtresi ekle <table>"})
     public void addFilter(Table table) {

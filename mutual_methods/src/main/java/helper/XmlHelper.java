@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-public class aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaXmlHelper {
+public class XmlHelper {
 
     /**
      * xml i aliyor icinden guncellemek istedigi seyi guncelleyip xml i tekrar olusturuyor

@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -31,7 +32,14 @@ public class FileHelper {
             return "";
         }
     }
-
+    public String readFileAsString(InputStream fileDirectory) {
+        try {
+            return new String(fileDirectory.readAllBytes());
+        } catch (IOException e) {
+            log.error("An error occurred message:{}", e.getMessage());
+            return "";
+        }
+    }
     /**
      * asagidaki tamamen yardimci methoddur
      *

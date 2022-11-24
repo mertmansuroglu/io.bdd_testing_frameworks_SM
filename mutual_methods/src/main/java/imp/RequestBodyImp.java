@@ -33,16 +33,6 @@ public class RequestBodyImp extends RequestBodyHelper {
      *
      * asagida once resource istenen filename pathini buldu sonrada icini okudu!
      */
-    @Step({"Add payload as String from resource <file name>",
-            "Add body as String from resource <file name>",
-            "Dosyayadan String tipinde istek body'si ekle <dosya adı>"})
-    public void addBodyAsString(String fileName) throws RequestNotDefined {
-        FileHelper fileHelper = new FileHelper();
-        String filePath = Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)).getPath();
-        String payLoad = fileHelper.readFileAsString(filePath);
-        addBody(payLoad);
-    }
-
     /**
      * * asagida request bodyu hic stringle ugrasmiyip file olarak yolluyoruz kendisi serailize yapiyor byte ocde a cevirip
      * @param fileName
@@ -51,6 +41,7 @@ public class RequestBodyImp extends RequestBodyHelper {
     @Step({"Add payload as file from resource <file name>",
             "Add body as file from resource <file name>",
             "Dosya tipinde istek body'si ekle <dosya adı>"})
+    @Given("payload as file {string} from resource")
     public void addBodyAsFile(String fileName) throws RequestNotDefined {
         String filePath = Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)).getPath();
 
@@ -120,13 +111,14 @@ public class RequestBodyImp extends RequestBodyHelper {
         ScenarioDataStore.put(key, newBody);
         log.info("\"{}\" is update as \"{}\" from \"{}\" in scenario store", selector, newValue, key);
     }
+
     @Step({"Get body <payloadName> and update <selector>=<value> in json then store it during the scenario with <key>"})
     public void updateBodyFromScenarioData(String key, String selector, String newValue, String key1) {
         DocumentHelper documentHelper = new DocumentHelper();
         String body = String.valueOf(Utils.getFromStoreData(key));
         if (!body.startsWith("<") || !body.startsWith("{")) {
             var is = getClass().getClassLoader().getResourceAsStream("payloads/" + key);
-            body = new FileHelper().readFileAsString(String.valueOf(is));
+            body = new FileHelper().readFileAsString(is);
         }
         newValue = String.valueOf(Utils.getFromStoreData(newValue));
         newValue = newValue.equalsIgnoreCase("null") ? null : newValue;
@@ -142,14 +134,14 @@ public class RequestBodyImp extends RequestBodyHelper {
     public void updateBody(String selector, String newValue, String key) {
         DocumentHelper documentHelper = new DocumentHelper();
         String body = String.valueOf(ScenarioDataStore.get(key));
+        newValue = String.valueOf(Utils.getFromStoreData(newValue));
         newValue = newValue.equalsIgnoreCase("null") ? null : newValue;
-
         Object newBody = documentHelper.updateDocument(body, selector, newValue);
         ScenarioDataStore.put(key, newBody);
         log.info("\"{}\" is update as \"{}\" from \"{}\" in scenario store", selector, newValue, key);
     }
 
-    @Step({"Get json file <file> and update as <selector>=<new> then add request",
+    @Step({"Get json file <file> and update as <selector>=<new> then add the request",
             "Resource'dan json dosyasını <filename> oku ve <selector>=<value> olarak güncele sonra requeste ekle "})
     public void updateAndAdd(String fileName, String selector, String newValue) throws RequestNotDefined {
         DocumentHelper documentHelper = new DocumentHelper();

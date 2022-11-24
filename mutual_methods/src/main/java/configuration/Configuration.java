@@ -20,7 +20,6 @@ public class Configuration {
      *
      */
     private static Configuration instance;
-    private final Properties systemProp;
     Properties configProps;
     protected static final Logger log = LogManager.getLogger(Configuration.class);
     static final String PROP_FILE_NAME = "config.properties";
@@ -49,7 +48,6 @@ public class Configuration {
      * once disardan verilmis propertyleri configProps ta tutuyorum
      */
     private Configuration() {
-      systemProp= System.getProperties()
         try (InputStream is = ClassLoader.getSystemResourceAsStream(PROP_FILE_NAME)) {
             configProps = new Properties();
             configProps.load(is);

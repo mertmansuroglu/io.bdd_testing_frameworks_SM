@@ -1,10 +1,14 @@
 Specification Heading
 =====================
 Created by 004577 on 18-Mar-22
+    //Specification Heading dedigi cucumberdaki feature gibi dusun
 
 This is an executable specification file which follows markdown syntax.
 Every heading in this file denotes a scenario. Every bulleted point denotes a step.
-     
+
+     //buraya yazdigim herseyi tum senaryolar oncesinde calistirir
+     //mesela base path im tum senaryolarda ayniysa ekleme stepini buraya koyabiliriz
+     //before after gibi dusunebilirsin
 Send notification to user
 ----------------
 
@@ -17,8 +21,3 @@ Send notification to user
 * Add Bearer token "AccessToken"
 * Post request
 * Check if status code is "200"
-
-
-Send notification
-----------------
-* Send notification
